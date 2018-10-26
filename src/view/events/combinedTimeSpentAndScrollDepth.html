@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <title>Event configuration</title>
+    <style type="text/css">
+      #messageIfNonValid {
+        display: none;
+        color: white;
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    Event configuration
+
+    <p id="messageIfNonValid">
+      Both thresholds must be numeric and > 0. The scroll depth threshold must be &lt;= 100.
+    </p>
+
+    <form action="#">
+      <p>
+        Threshold for time spent (in seconds)
+        <input id="timeSpent" type="number">    
+      </p>
+      <p>
+        Threshold for scroll depth (in % of the page height)
+        <input id="scrollDepth" type="number">
+      </p>
+      <p>
+        <input type="checkbox" id="fireOnce" value="fireOnce" checked />
+        <label for="fireOnce">Fire once per page only</label>
+      </p>
+    </form>
+
+    <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
+    <script>
+      window.extensionBridge.register({
+        init: function(info) {
+          if (info.settings) {
+            document.querySelector("#timeSpent").value = info.settings.timeSpent;
+            document.querySelector("#scrollDepth").value = info.settings.scrollDepth;
+            document.querySelector("#fireOnce").checked = info.settings.fireOnce;
+          } else {
+            // let's set some sensible defaults
+            document.querySelector("#timeSpent").value = 30;
+            document.querySelector("#scrollDepth").value = 50;
+            document.querySelector("#fireOnce").checked = true;
+          }
+        },
+
+        getSettings: function() {
+          return {
+            timeSpent: document.querySelector("#timeSpent").value,
+            scrollDepth: document.querySelector('#scrollDepth').value,
+            fireOnce: document.querySelector('#fireOnce').checked
+          }
+        },
+
+        validate: function() {
+          var valid = false;
+          var timeSpent = document.querySelector("#timeSpent").value;
+          var scrollDepth = document.querySelector("#scrollDepth").value;
+          if ('undefined' !== typeof timeSpent && timeSpent && 'undefined' !== typeof scrollDepth && scrollDepth) {
+            if (0 < timeSpent) {
+              if (0 < scrollDepth && 100 >= scrollDepth) {
+                valid = true;
+              }
+            }
+          }
+          if (!valid) {
+            document.querySelector('#messageIfNonValid').style.display = 'block';
+          } else {
+            document.querySelector('#messageIfNonValid').style.display = 'none';
+          }
+          return valid;
+        }
+      });
+    </script>
+  </body>
+</html>

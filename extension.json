@@ -1,0 +1,24 @@
+{
+  "displayName": "Time Spent and Scroll Depth combined Event",
+  "name": "time-spent-and-scroll-depth-combined-event",
+  "platform": "web",
+  "version": "1.0.2",
+  "description": "Provides a combined \"Time Spent\" and \"Scroll Depth\" Event",
+  "author": {
+    "name": "Jan Exner"
+  },
+  "viewBasePath": "src/view/",
+  "events": [
+    {
+      "displayName": "Combined Time Spent and Scroll Depth",
+      "name": "combined-time-spent-and-scroll-depth",
+      "schema": {
+        "$schema": "http://json-schema.org/draft-04/schema#",
+        "type": "object",
+        "properties": {}
+      },
+      "libPath": "src/lib/events/combinedTimeSpentAndScrollDepth.js",
+      "viewPath": "events/combinedTimeSpentAndScrollDepth.html"
+    }
+  ]
+}

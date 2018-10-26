@@ -1,0 +1,22 @@
+{
+  "name": "time_spent_and_scroll_depth_extension",
+  "version": "1.0.0",
+  "description": "An Extension that provides a combined \"TIme Spent\" and \"Scroll Depth\" Event.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "launch"
+  ],
+  "author": "Jan Exner",
+  "license": "ISC",
+  "devDependencies": {
+    "@adobe/reactor-scaffold": "^2.1.0"
+  },
+  "dependencies": {
+    "@adobe/reactor-packager": "^3.0.2",
+    "@adobe/reactor-sandbox": "^10.0.6",
+    "@adobe/reactor-uploader": "^1.1.1"
+  }
+}
