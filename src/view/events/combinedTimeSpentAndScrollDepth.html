@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <title>Event configuration</title>
+    <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/coralui/3.17.0/css/coral.css">
     <style type="text/css">
       #messageIfNonValid {
         display: none;
@@ -10,8 +11,10 @@
         background-color: red;
       }
     </style>
+    <script src="https://use.typekit.net/buj6cmr.js"></script>
+    <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
-  <body>
+  <body class="coral--light">
     Event configuration
 
     <p id="messageIfNonValid">
@@ -31,7 +34,11 @@
         <input type="checkbox" id="fireOnce" value="fireOnce" checked />
         <label for="fireOnce">Fire once per page only</label>
       </p>
-    </form>
+      <p>
+        <input type="checkbox" id="fireOnShortPages" value="fireOnShortPages" checked />
+        <label for="fireOnShortPages">On short pages, fire after timeout</label>
+        </p>
+      </form>
 
     <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
     <script>
@@ -41,11 +48,13 @@
             document.querySelector("#timeSpent").value = info.settings.timeSpent;
             document.querySelector("#scrollDepth").value = info.settings.scrollDepth;
             document.querySelector("#fireOnce").checked = info.settings.fireOnce;
+            document.querySelector("#fireOnShortPages").checked = info.settings.fireOnShortPages;
           } else {
             // let's set some sensible defaults
             document.querySelector("#timeSpent").value = 30;
             document.querySelector("#scrollDepth").value = 50;
             document.querySelector("#fireOnce").checked = true;
+            document.querySelector("#fireOnShortPages").checked = true;
           }
         },
 
@@ -53,7 +62,8 @@
           return {
             timeSpent: document.querySelector("#timeSpent").value,
             scrollDepth: document.querySelector('#scrollDepth').value,
-            fireOnce: document.querySelector('#fireOnce').checked
+            fireOnce: document.querySelector('#fireOnce').checked,
+            fireOnShortPages: document.querySelector("#fireOnShortPages").checked
           }
         },
 
