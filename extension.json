@@ -2,7 +2,7 @@
   "displayName": "Time Spent and Scroll Depth combined Event",
   "name": "time-spent-and-scroll-depth-combined-event",
   "platform": "web",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "Provides a combined \"Time Spent\" and \"Scroll Depth\" Event",
   "author": {
     "email": "jexner@adobe.com",

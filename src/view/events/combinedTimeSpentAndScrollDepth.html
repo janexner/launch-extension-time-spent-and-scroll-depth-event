@@ -15,30 +15,40 @@
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
   <body class="coral--light">
-    Event configuration
+    <form action="#">
+      <h2>Event configuration</h2>
 
     <p id="messageIfNonValid">
-      Both thresholds must be numeric and > 0. The scroll depth threshold must be &lt;= 100.
+      Both thresholds must be numeric and &gt; 0. The scroll depth threshold must be &lt;= 100. The delay before measuring page height must be &gt; 0.
     </p>
 
-    <form action="#">
-      <p>
-        Threshold for time spent (in seconds)
-        <input id="timeSpent" type="number">    
-      </p>
-      <p>
-        Threshold for scroll depth (in % of the page height)
-        <input id="scrollDepth" type="number">
-      </p>
-      <p>
-        <input type="checkbox" id="fireOnce" value="fireOnce" checked />
-        <label for="fireOnce">Fire once per page only</label>
-      </p>
-      <p>
-        <input type="checkbox" id="fireOnShortPages" value="fireOnShortPages" checked />
-        <label for="fireOnShortPages">On short pages, fire after timeout</label>
-        </p>
-      </form>
+    <p>
+      Threshold for time spent (in seconds)
+      <input id="timeSpent" type="number">    
+    </p>
+    <p>
+      Threshold for scroll depth (in % of the page height)
+      <input id="scrollDepth" type="number">
+    </p>
+    <p>
+      <input type="checkbox" id="fireOnce" value="fireOnce" checked />
+      <label for="fireOnce">Fire once per page only</label>
+    </p>
+    <p>
+      <input type="checkbox" id="fireOnShortPages" value="fireOnShortPages" checked />
+      <label for="fireOnShortPages">On short pages, fire after timeout</label>
+    </p>
+
+    <h2>Advanced configuration</h2>
+    <p>
+      If these options don't mean anything to you, just leave them as they are.
+    </p>
+    <p>
+      Delay before measuring height of page (in milliseconds)
+      <input id="initDelay" type="number">
+    </p>
+
+    </form>
 
     <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
     <script>
@@ -49,12 +59,14 @@
             document.querySelector("#scrollDepth").value = info.settings.scrollDepth;
             document.querySelector("#fireOnce").checked = info.settings.fireOnce;
             document.querySelector("#fireOnShortPages").checked = info.settings.fireOnShortPages;
+            document.querySelector("#initDelay").value = info.settings.initDelay;
           } else {
             // let's set some sensible defaults
-            document.querySelector("#timeSpent").value = 30;
+            document.querySelector("#timeSpent").value = 15;
             document.querySelector("#scrollDepth").value = 50;
             document.querySelector("#fireOnce").checked = true;
             document.querySelector("#fireOnShortPages").checked = true;
+            document.querySelector("#initDelay").value = 100;
           }
         },
 
@@ -63,7 +75,8 @@
             timeSpent: document.querySelector("#timeSpent").value,
             scrollDepth: document.querySelector('#scrollDepth').value,
             fireOnce: document.querySelector('#fireOnce').checked,
-            fireOnShortPages: document.querySelector("#fireOnShortPages").checked
+            fireOnShortPages: document.querySelector("#fireOnShortPages").checked,
+            initDelay: document.querySelector("#initDelay").value
           }
         },
 
@@ -71,10 +84,13 @@
           var valid = false;
           var timeSpent = document.querySelector("#timeSpent").value;
           var scrollDepth = document.querySelector("#scrollDepth").value;
-          if ('undefined' !== typeof timeSpent && timeSpent && 'undefined' !== typeof scrollDepth && scrollDepth) {
+          var initDelay = document.querySelector("#initDelay").value;
+          if ('undefined' !== typeof timeSpent && timeSpent && 'undefined' !== typeof scrollDepth && scrollDepth && 'undefined' !== typeof initDelay && initDelay) {
             if (0 < timeSpent) {
               if (0 < scrollDepth && 100 >= scrollDepth) {
-                valid = true;
+                if (0 < initDelay) {
+                  valid = true;
+                }
               }
             }
           }
