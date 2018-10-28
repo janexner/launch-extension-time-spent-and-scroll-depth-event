@@ -1,9 +1,9 @@
 {
-  "displayName": "Time Spent and Scroll Depth combined Event",
+  "displayName": "Content Consumption Events",
   "name": "time-spent-and-scroll-depth-combined-event",
   "platform": "web",
-  "version": "1.2.0",
-  "description": "Provides a combined \"Time Spent\" and \"Scroll Depth\" Event",
+  "version": "1.3.0",
+  "description": "Provides Events based on \"TIme Spent\", \"Scroll Depth\", and other \"Engagement-related\" things.",
   "author": {
     "email": "jexner@adobe.com",
     "name": "Jan Exner"
