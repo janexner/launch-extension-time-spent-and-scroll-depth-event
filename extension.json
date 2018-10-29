@@ -2,7 +2,7 @@
   "displayName": "Time and Scroll Event",
   "name": "time-spent-and-scroll-depth-combined-event",
   "platform": "web",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Provides an Event based on \"TIme Spent\" and \"Scroll Depth\".",
   "author": {
     "email": "jexner@adobe.com",
@@ -16,7 +16,34 @@
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
         "type": "object",
-        "properties": {}
+        "properties": {
+          "initDelay": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "scrollDepth": {
+            "type": "number",
+            "exclusiveMinimum": 0,
+            "maximum": 100
+          },
+          "timeSpent": {
+            "type": "number",
+            "exclusiveMinimum": 0
+          },
+          "fireOnce": {
+            "type": "boolean"
+          },
+          "fireOnShortPages": {
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "initDelay",
+          "targetDepth",
+          "triggerOnce",
+          "fireOnShortPages"
+        ],
+        "additionalProperties": false
       },
       "libPath": "src/lib/events/combinedTimeSpentAndScrollDepth.js",
       "viewPath": "events/combinedTimeSpentAndScrollDepth.html"
