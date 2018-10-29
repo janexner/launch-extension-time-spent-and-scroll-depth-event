@@ -5,50 +5,60 @@
     <title>Event configuration</title>
     <link rel="stylesheet" href="//assets.adobedtm.com/activation/reactor/coralui/3.17.0/css/coral.css">
     <style type="text/css">
+      body{padding:.75rem}fieldset{border:0;margin:0;padding:0}.Label{display:inline-block;line-height:2.25rem!important}.FieldSubset{padding:0 0 .5rem 1.625rem}.Field--short{width:9.375rem}.Field--long{width:20rem}.Accordion{margin-bottom:-1px}.Accordion--first{border-top:0}.Accordion--last{border-bottom:0}.ColumnGrid{display:-webkit-box;display:-ms-flexbox;display:box;display:flex;-webkit-box-lines:multiple;-moz-box-lines:multiple;-o-box-lines:multiple;-ms-flex-wrap:wrap;flex-wrap:wrap;max-width:50rem}.ColumnGrid-cell{margin-right:.625rem;margin-bottom:.5rem;width:24.375rem}.u-gapLeft{margin-left:.5rem!important}.u-gapLeft2x{margin-left:1rem!important}.u-gapRight{margin-right:.5rem!important}.u-gapRight2x{margin-right:1rem!important}.u-gapTop{margin-top:.5rem!important}.u-gapTop2x{margin-top:1rem!important}.u-gapBottom{margin-bottom:.5rem!important}.u-gapBottom2x{margin-bottom:1rem!important}.u-block{display:block!important}.u-inlineBlock{display:inline-block!important}.u-italic{font-style:italic!important}.u-bold{font-weight:700!important}.u-hidden{visibility:hidden!important}.u-noWrap{white-space:nowrap}.u-noPadding{padding:0}.u-fieldLineHeight{line-height:2.375rem}.coral-Heading{line-height:2.25rem!important}
+    </style>
+    <style>
       #messageIfNonValid {
         display: none;
         color: white;
         background-color: red;
       }
     </style>
+    <style>
+      html, body {
+        background-color: transparent !important;
+      }
+    </style>
     <script src="https://use.typekit.net/buj6cmr.js"></script>
     <script>try{Typekit.load({ async: true });}catch(e){}</script>
   </head>
   <body class="coral--light">
-    <form action="#">
-      <h2>Event configuration</h2>
+    <div id="content">
+      <form action="#">
+        <h2>Event configuration</h2>
 
-    <p id="messageIfNonValid">
-      Both thresholds must be numeric and &gt; 0. The scroll depth threshold must be &lt;= 100. The delay before measuring page height must be &gt; 0.
-    </p>
+      <p id="messageIfNonValid">
+        Both thresholds must be numeric and &gt; 0. The scroll depth threshold must be &lt;= 100. The delay before measuring page height must be &gt; 0.
+      </p>
 
-    <p>
-      Threshold for time spent (in seconds)
-      <input id="timeSpent" type="number">    
-    </p>
-    <p>
-      Threshold for scroll depth (in % of the page height)
-      <input id="scrollDepth" type="number">
-    </p>
-    <p>
-      <input type="checkbox" id="fireOnce" value="fireOnce" checked />
-      <label for="fireOnce">Fire once per page only</label>
-    </p>
-    <p>
-      <input type="checkbox" id="fireOnShortPages" value="fireOnShortPages" checked />
-      <label for="fireOnShortPages">On short pages, fire after timeout</label>
-    </p>
+      <p>
+        Threshold for time spent (in seconds)
+        <input id="timeSpent" type="number">    
+      </p>
+      <p>
+        Threshold for scroll depth (in % of the page height)
+        <input id="scrollDepth" type="number">
+      </p>
+      <p>
+        <input type="checkbox" id="fireOnce" value="fireOnce" checked />
+        <label for="fireOnce">Fire once per page only</label>
+      </p>
+      <p>
+        <input type="checkbox" id="fireOnShortPages" value="fireOnShortPages" checked />
+        <label for="fireOnShortPages">On short pages, fire after timeout</label>
+      </p>
 
-    <h2>Advanced configuration</h2>
-    <p>
-      If these options don't mean anything to you, just leave them as they are.
-    </p>
-    <p>
-      Delay before measuring height of page (in milliseconds)
-      <input id="initDelay" type="number">
-    </p>
+      <h2>Advanced configuration</h2>
+      <p>
+        If these options don't mean anything to you, just leave them as they are.
+      </p>
+      <p>
+        Delay before measuring height of page (in milliseconds)
+        <input id="initDelay" type="number">
+      </p>
 
-    </form>
+      </form>
+    </div>
 
     <script src="https://assets.adobedtm.com/activation/reactor/extensionbridge/extensionbridge.min.js"></script>
     <script>
