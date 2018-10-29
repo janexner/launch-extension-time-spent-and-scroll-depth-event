@@ -1,4 +1,4 @@
-# Launch Extension "Content Consumption Events"
+# Launch Extension "Time and Scroll Event"
 
 Extension for Launch, by Adobe - Provides an Event for measuring the consumption of content.
 
