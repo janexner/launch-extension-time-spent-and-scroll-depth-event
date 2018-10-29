@@ -1,7 +1,7 @@
 {
-  "name": "jexner-content-consumption-events",
+  "name": "jexner-time-and-scroll-event",
   "version": "1.3.0",
-  "description": "Provides Events based on \"TIme Spent\", \"Scroll Depth\", and other \"Engagement-related\" things.",
+  "description": "Provides an Event based on \"TIme Spent\" and \"Scroll Depth\".",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +12,6 @@
     "analytics"
   ],
   "repository": "github:janexner/launch-extension-time-spent-and-scroll-depth-event",
-  "homepage": "https://webanalyticsfordevelopers.com/2018/11/20/",
   "author": "Jan Exner <jexner@adobe.com>",
   "license": "ISC",
   "devDependencies": {
