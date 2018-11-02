@@ -5,10 +5,13 @@
   "version": "1.3.1",
   "description": "Provides an Event based on \"TIme Spent\" and \"Scroll Depth\".",
   "author": {
-    "email": "jexner@adobe.com",
-    "name": "Jan Exner"
+    "name": "Jan Exner, Adobe Consulting",
+    "url": "http://adobe.com",
+    "email": "jexner@adobe.com"
   },
+  "exchangeUrl": "https://www.adobeexchange.com/experiencecloud.details.101057.html",
   "viewBasePath": "src/view/",
+  "iconPath": "assets/icons/launch-icon-reactor.svg",
   "events": [
     {
       "displayName": "Combined Time Spent and Scroll Depth",

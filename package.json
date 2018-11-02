@@ -12,7 +12,10 @@
     "analytics"
   ],
   "repository": "github:janexner/launch-extension-time-spent-and-scroll-depth-event",
-  "author": "Jan Exner <jexner@adobe.com>",
+  "author": {
+    "name": "Jan Exner, Adobe Consulting",
+    "email": "jexner@adobe.com"
+  },
   "license": "ISC",
   "devDependencies": {
     "@adobe/reactor-scaffold": "^2.1.0",
