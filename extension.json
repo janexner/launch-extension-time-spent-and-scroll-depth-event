@@ -2,7 +2,7 @@
   "displayName": "Time and Scroll Event",
   "name": "ags055-time-spent-and-scroll-depth-combined-event",
   "platform": "web",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Provides an Event based on \"Time Spent\" and \"Scroll Depth\".",
   "author": {
     "name": "Adobe Consulting, Jan Exner",
@@ -20,16 +20,19 @@
         "properties": {
           "initDelay": {
             "type": "number",
-            "exclusiveMinimum": 0
+            "minimum": 0,
+            "exclusiveMinimum": true
           },
           "scrollDepth": {
             "type": "number",
-            "exclusiveMinimum": 0,
+            "minimum": 0,
+            "exclusiveMinimum": true,
             "maximum": 100
           },
           "timeSpent": {
             "type": "number",
-            "exclusiveMinimum": 0
+            "minimum": 0,
+            "exclusiveMinimum": true
           },
           "fireOnce": {
             "type": "boolean"
@@ -40,8 +43,9 @@
         },
         "required": [
           "initDelay",
-          "targetDepth",
-          "triggerOnce",
+          "scrollDepth",
+          "timeSpent",
+          "fireOnce",
           "fireOnShortPages"
         ],
         "additionalProperties": false

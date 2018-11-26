@@ -82,11 +82,11 @@
 
         getSettings: function() {
           return {
-            timeSpent: document.querySelector("#timeSpent").value,
-            scrollDepth: document.querySelector('#scrollDepth').value,
+            initDelay: Number(document.querySelector("#initDelay").value),
+            scrollDepth: Number(document.querySelector('#scrollDepth').value),
+            timeSpent: Number(document.querySelector("#timeSpent").value),
             fireOnce: document.querySelector('#fireOnce').checked,
-            fireOnShortPages: document.querySelector("#fireOnShortPages").checked,
-            initDelay: document.querySelector("#initDelay").value
+            fireOnShortPages: document.querySelector("#fireOnShortPages").checked
           }
         },
 
