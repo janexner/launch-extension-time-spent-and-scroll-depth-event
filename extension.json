@@ -9,7 +9,7 @@
     "email": "jexner@adobe.com"
   },
   "viewBasePath": "src/view/",
-  "iconPath": "assets/icons/icon1.svg",
+  "iconPath": "resources/icons/logo.svg",
   "events": [
     {
       "displayName": "Combined Time Spent and Scroll Depth",
