@@ -62,7 +62,10 @@ module.exports = function(settings, trigger) {
                 if (state.hasTriggered === false || settings.fireOnce === false) {
                   state.hasTriggered = true;
                   trigger({
-                    "subType": "scrollDepth"
+                    "subType": "scrollDepth",
+                    // set the targetScrollDepth in the event
+                    // so that it can be used with a Rule's conditions and actions
+                    "scrollDepth": targetScrollDepth
                   });
                 }
               }
