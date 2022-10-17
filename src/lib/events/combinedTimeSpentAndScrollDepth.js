@@ -11,6 +11,13 @@ module.exports = function(settings, trigger) {
     'targetTimeSpentReached': false,
     'hasTriggered': false
   }
+  // add global state
+  // point is to make sure that a "lower" trigger will never fire after a "higher" trigger
+  // such as 50% fireng first, then 25% afterwards
+  _satellite._ags055 = _satellite._ags055 || {};
+  var globalState = _satellite._ags055;
+  // so, we'll keep track of the lowest trigger that has fired, so far
+  globalState.lowestAllowedToFire = globalState.lowestAllowedToFire || -1;
 
   // create listeners
   // listener 1 - time spent
@@ -19,9 +26,18 @@ module.exports = function(settings, trigger) {
     if (state.targetScrollDepthReached) {
       if (state.hasTriggered === false || settings.fireOnce === false) {
         state.hasTriggered = true;
-        trigger({
-          "subType": "timeSpent"
-        });
+        // check global state to see if we're allowed to trigger
+        if (globalState.lowestAllowedToFire < targetScrollDepth) {
+          // record for global state
+          globalState.lowestAllowedToFire = targetScrollDepth;
+          // BTW, this test has to happen here (on the time trigger), too,
+          // in case the scroll depth trigger has already fired, before!
+          // We want to avoid out of order events.
+          // now trigger
+          trigger({
+            "subType": "timeSpent"
+          });
+        }
       }
     }
   }, targetTimeSpent * 1000);
@@ -61,12 +77,19 @@ module.exports = function(settings, trigger) {
               if (state.targetTimeSpentReached) {
                 if (state.hasTriggered === false || settings.fireOnce === false) {
                   state.hasTriggered = true;
-                  trigger({
-                    "subType": "scrollDepth",
-                    // set the targetScrollDepth in the event
-                    // so that it can be used with a Rule's conditions and actions
-                    "scrollDepth": targetScrollDepth
-                  });
+                  // check global state to see if we're allowed to trigger
+                  // we want to avoid out of order events
+                  if (globalState.lowestAllowedToFire < targetScrollDepth) {
+                    // record for global state
+                    globalState.lowestAllowedToFire = targetScrollDepth;
+                    // now trigger
+                    trigger({
+                      "subType": "scrollDepth",
+                      // set the targetScrollDepth in the event
+                      // so that it can be used with a Rule's conditions and actions
+                      "scrollDepth": targetScrollDepth
+                    });
+                  }
                 }
               }
             }
