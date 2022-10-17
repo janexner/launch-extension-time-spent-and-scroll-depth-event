@@ -2,7 +2,7 @@
   "displayName": "Time and Scroll Event",
   "name": "ags055-time-spent-and-scroll-depth-combined-event",
   "platform": "web",
-  "version": "1.4.0",
+  "version": "1.5.0",
   "description": "Provides an Event based on \"Time Spent\" and \"Scroll Depth\".",
   "author": {
     "name": "Adobe Consulting, Jan Exner",

@@ -1,2 +1,2 @@
 @echo off
-npx @adobe/reactor-uploader --org-id=BE5121AA565821017F000101@AdobeOrg --tech-account-id=EC1D39425BD2C7FF0A495ECC@techacct.adobe.com --api-key=89546d44b3644128b24dc9ad68e1bb4e
+npx @adobe/reactor-uploader --org-id=BE5121AA565821017F000101@AdobeOrg --tech-account-id=76C86B50634D25740A495FD8@techacct.adobe.com --api-key=51cb414f435e48b7b953f5e2cbd508d2
