@@ -12,7 +12,7 @@
   "iconPath": "resources/icons/logo.svg",
   "events": [
     {
-      "displayName": "Combined Time Spent and Scroll Depth (new)",
+      "displayName": "Combined Time Spent and Scroll Depth",
       "name": "combined-time-spent-and-scroll-depth",
       "schema": {
         "$schema": "http://json-schema.org/draft-04/schema#",
