@@ -4,6 +4,8 @@ module.exports = function(settings, trigger) {
   var targetScrollDepth = settings.scrollDepth || 50; // percent of page height
   var targetTimeSpent = settings.timeSpent || 30; // in seconds
   var initDelay = settings.initDelay || 100; // in milliseconds
+  var preventOutOfOrder = settings.preventOutOfOrder || false;
+  var allowOutOfOrder = !preventOutOfOrder; // reverse logic for clarity in the code
 
   // keep track of state
   var state = {
@@ -12,8 +14,8 @@ module.exports = function(settings, trigger) {
     'hasTriggered': false
   }
   // add global state
-  // point is to make sure that a "lower" trigger will never fire after a "higher" trigger
-  // such as 50% fireng first, then 25% afterwards
+  // point is to make sure that a "lower" trigger can be prevented after a "higher" trigger
+  // such as 50% firing first, then 25% afterwards
   _satellite._ags055 = _satellite._ags055 || {};
   var globalState = _satellite._ags055;
   // so, we'll keep track of the lowest trigger that has fired, so far
@@ -27,9 +29,12 @@ module.exports = function(settings, trigger) {
       if (state.hasTriggered === false || settings.fireOnce === false) {
         state.hasTriggered = true;
         // check global state to see if we're allowed to trigger
-        if (globalState.lowestAllowedToFire < targetScrollDepth) {
+        turbine.logger.info("Considering trigger bcs timeout...", allowOutOfOrder, globalState, targetScrollDepth);
+        if (allowOutOfOrder || globalState.lowestAllowedToFire <= targetScrollDepth) {
           // record for global state
-          globalState.lowestAllowedToFire = targetScrollDepth;
+          if (globalState.lowestAllowedToFire <= targetScrollDepth) {
+            globalState.lowestAllowedToFire = targetScrollDepth;
+          }
           // BTW, this test has to happen here (on the time trigger), too,
           // in case the scroll depth trigger has already fired, before!
           // We want to avoid out of order events.
@@ -79,9 +84,12 @@ module.exports = function(settings, trigger) {
                   state.hasTriggered = true;
                   // check global state to see if we're allowed to trigger
                   // we want to avoid out of order events
-                  if (globalState.lowestAllowedToFire < targetScrollDepth) {
+                  turbine.logger.info("Considering trigger bcs scroll...", allowOutOfOrder, globalState, targetScrollDepth);
+                  if (allowOutOfOrder || globalState.lowestAllowedToFire <= targetScrollDepth) {
                     // record for global state
-                    globalState.lowestAllowedToFire = targetScrollDepth;
+                    if (globalState.lowestAllowedToFire <= targetScrollDepth) {
+                      globalState.lowestAllowedToFire = targetScrollDepth;
+                    }
                     // now trigger
                     trigger({
                       "subType": "scrollDepth",
