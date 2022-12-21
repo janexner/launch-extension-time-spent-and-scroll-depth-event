@@ -103,7 +103,7 @@ module.exports = function(settings, trigger) {
             }
           } catch(e2) {
           }
-        });
+        }, { passive: true });
       }
     } catch(e) {
     }
