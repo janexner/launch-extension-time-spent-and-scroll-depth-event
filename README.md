@@ -9,3 +9,5 @@ The Event will only fire once *both* conditions are met.
 *New in v1.5.0*: events will no longer fire out of order!
 
 In previous versions, it was possible that the Extension could generate a sequence of events like this: 50% > 25%. This is no longer possible. The firing of the 25% event in the example would no longer happen.
+
+*New in v2*: scroll event listener will be a passive listener, see [Lighthouse best practice: use passive event listeners](https://developer.chrome.com/docs/lighthouse/best-practices/uses-passive-event-listeners/).

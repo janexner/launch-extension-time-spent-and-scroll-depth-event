@@ -6,6 +6,7 @@ module.exports = function(settings, trigger) {
   var initDelay = settings.initDelay || 100; // in milliseconds
   var preventOutOfOrder = settings.preventOutOfOrder || false;
   var allowOutOfOrder = !preventOutOfOrder; // reverse logic for clarity in the code
+  var supportsPassive = false; // try to use passive scroll listeners if the browser supports it. Default is no.
 
   // keep track of state
   var state = {
@@ -20,6 +21,18 @@ module.exports = function(settings, trigger) {
   var globalState = _satellite._ags055;
   // so, we'll keep track of the lowest trigger that has fired, so far
   globalState.lowestAllowedToFire = globalState.lowestAllowedToFire || -1;
+
+  // check whether browser supports passive listeners
+  // Test via a getter in the options object to see if the passive property is accessed
+  try {
+    var opts = Object.defineProperty({}, 'passive', {
+      get: function () {
+        supportsPassive = true;
+      }
+    });
+    window.addEventListener("testPassive", null, opts);
+    window.removeEventListener("testPassive", null, opts);
+  } catch (e) { }
 
   // create listeners
   // listener 1 - time spent
@@ -103,7 +116,7 @@ module.exports = function(settings, trigger) {
             }
           } catch(e2) {
           }
-        });
+        }, supportsPassive ? { passive: true } : false );
       }
     } catch(e) {
     }
